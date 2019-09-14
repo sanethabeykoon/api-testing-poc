@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="ConnTestSuite" verbose="1" >
+  <listeners>
+      <listener class-name="io.poc.apit.annotations.AnnotationTransformer"/>
+  </listeners>
+  <test name="ConnTest">
+    <classes>
+      <class name="io.poc.apit.scenarios.ConnectorTest"/>
+    </classes>
+  </test>
+</suite>
