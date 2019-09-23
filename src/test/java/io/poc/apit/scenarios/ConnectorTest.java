@@ -105,9 +105,10 @@ public class ConnectorTest {
 		requestBody.put("status", "Inprogress");
 		
 		putResponse = connector.putRequest(connection, headers, requestBody);
-		boolean awaiterStatus = awaiter.awaitForStatus(putResponse, 1, 15);
+		boolean readyState = awaiter.awaitForStatus(putResponse, 1, 15);
 		
-		Assert.assertEquals(awaiterStatus, true, "Awaiter failed with a timeout");
+		System.out.println("Response ready state: " + readyState);
+		Assert.assertEquals(readyState, true);
 	}
 		
 	@AfterClass

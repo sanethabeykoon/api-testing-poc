@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import io.restassured.response.Response;
 
 import static org.awaitility.Awaitility.*;
+import org.awaitility.core.ConditionTimeoutException;
 import static org.hamcrest.Matchers.*;
 
 public class Awaiter {
@@ -13,8 +14,12 @@ public class Awaiter {
 	private Response response;
 		
 	public boolean awaitForStatus(Response response, long pollInterval, long awaitTime) {
-		this.response = response;
-		return with().pollInterval(pollInterval, TimeUnit.SECONDS).await().atMost(awaitTime, TimeUnit.SECONDS).until(checkStatus(), equalTo(true));
+		try {
+			this.response = response;
+			return with().pollInterval(pollInterval, TimeUnit.SECONDS).await().atMost(awaitTime, TimeUnit.SECONDS).until(checkStatus(), equalTo(true));
+		}catch(ConditionTimeoutException ex){
+			return false;
+		}
 	}
 	
 	private Callable<Boolean> checkStatus() {
