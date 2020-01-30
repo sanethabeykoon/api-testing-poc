@@ -11,7 +11,7 @@ import io.restassured.specification.RequestSpecification;
 
 public class Connector{
 
-	public RequestSpecification getConnection(String baseUrl) {
+	public static RequestSpecification getConnection(String baseUrl) {
 		RestAssured.baseURI = baseUrl;
 		RequestSpecification connection = RestAssured.given();
 		return connection;
