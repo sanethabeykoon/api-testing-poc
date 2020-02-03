@@ -4,18 +4,11 @@ import java.util.Map;
 
 import org.json.JSONObject;
 
-import io.restassured.RestAssured;
+import io.restassured.specification.RequestSpecification;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 public class Connector{
-
-	public RequestSpecification getConnection(String baseUrl) {
-		RestAssured.baseURI = baseUrl;
-		RequestSpecification connection = RestAssured.given();
-		return connection;
-	}
 	
 	public Response getRequest(RequestSpecification connection, String uri, Map<String, String> params) {
 		connection.queryParams(params);

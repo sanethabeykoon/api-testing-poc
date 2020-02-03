@@ -17,6 +17,7 @@ import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
 
 import io.poc.apit.annotations.RetryCount;
+import io.poc.apit.connectors.ConnectionGenerator;
 import io.poc.apit.connectors.Connector;
 import io.poc.apit.util.Awaiter;
 
@@ -35,8 +36,8 @@ public class ConnectorTest {
 	
 	@BeforeClass
 	public void setupTest() {
+		connection = ConnectionGenerator.getConnection("https://endpoint");
 		connector = new Connector();
-		connection = connector.getConnection("https://endpoint");
 		awaiter = new Awaiter();
 	}
 	
